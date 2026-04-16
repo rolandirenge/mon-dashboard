@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';  // ← CHANGE ICI (../ → ../../)
+import { useAuth } from '../../hooks/useAuth';
 import { 
   FaHome, 
+  FaUser,  // ← Ajoute cette icône pour le profil
   FaUserGraduate, 
   FaBook, 
   FaClipboardList, 
@@ -20,6 +21,7 @@ function Sidebar() {
   // Définition de tous les menus avec leurs rôles autorisés
   const menuItems = [
     { path: '/', icon: <FaGlobe />, label: 'Accueil public', roles: ['admin', 'secretary', 'teacher', 'student', 'public'] },
+    { path: '/auth/profile', icon: <FaUser />, label: 'Profil', roles: ['admin', 'secretary', 'teacher', 'student'] }, // ← AJOUTÉ
     { path: '/dashboard', icon: <FaHome />, label: 'Dashboard', roles: ['admin', 'secretary', 'teacher', 'student'] },
     { path: '/students', icon: <FaUserGraduate />, label: 'Étudiants', roles: ['admin', 'secretary', 'teacher'] },
     { path: '/courses', icon: <FaBook />, label: 'Cours', roles: ['admin', 'secretary', 'teacher', 'student'] },
@@ -31,14 +33,14 @@ function Sidebar() {
     { path: '/admin', icon: <FaCog />, label: 'Administration', roles: ['admin'] },
   ];
 
-  // Filtrer les menus selon le rôle
+  // Filtrer les menus selon le rôle de l'utilisateur connecté
   const filteredMenu = menuItems.filter(item => {
     if (!user) return item.path === '/';
     return item.roles.includes(user.role);
   });
 
   return (
-    <aside className="w-64 bg-white shadow-lg h-full fixed left-0 top-0 overflow-y-auto">
+    <aside className="w-64 bg-white shadow-lg h-full min-h-screen">
       <div className="p-6">
         <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Menu

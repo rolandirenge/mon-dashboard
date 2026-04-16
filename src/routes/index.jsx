@@ -11,6 +11,7 @@ import Notifications from '../pages/notifications/Notifications';
 import Admin from '../pages/admin/Admin';
 import Deliberations from '../pages/deliberations/Deliberations';
 import Appeals from '../pages/appeals/Appeals';
+import Profile from '../pages/auth/Profile';
 const AppRoutes = () => {
   return (
     <Routes>
@@ -29,6 +30,7 @@ const AppRoutes = () => {
       <Route path="/admin" element={<Admin />} />
       <Route path="/deliberations" element={<Deliberations />} />
       <Route path="/appeals" element={<Appeals />} />
+      <Route path="/auth/profile" element={<Profile />} />
     </Routes>
   );
 };
